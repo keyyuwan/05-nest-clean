@@ -5,7 +5,7 @@ export interface CommentProps {
   authorId: UniqueEntityID
   content: string
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
 }
 
 // abstract -> cannot be instantiated, only extended by another class
