@@ -8,7 +8,7 @@ import {
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { ListQuestionCommentsUseCase } from '@/domain/forum/application/use-cases/list-question-comments'
-import { CommentPresenter } from '../presenters/comment-presenter'
+import { CommentWithAuthorPresenter } from '../presenters/comment-with-author-presenter'
 
 const pageQueryParamsSchema = z
   .string()
@@ -39,10 +39,10 @@ export class ListQuestionCommentsController {
       throw new BadRequestException()
     }
 
-    const questionComments = result.value.questionComments
+    const questionComments = result.value.comments
 
     return {
-      comments: questionComments.map(CommentPresenter.toHTTP),
+      comments: questionComments.map(CommentWithAuthorPresenter.toHTTP),
     }
   }
 }
